@@ -9,25 +9,25 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.BothLiftersDown;
 import frc.robot.commands.BothLiftersDownCom;
 import frc.robot.commands.FrontLifterUpCom;
+import frc.robot.commands.LiftDriveForwardCom;
+import frc.robot.commands.LiftDriveReverseCom;
 import frc.robot.commands.RearLifterUpCom;
 
 public class OI {
 
   // Initialize the objects for the joystick and joystick buttons
-  private Joystick driveStick;
   private Joystick elevatorStick;
   private JoystickButton retractFrontLiftButton;
   private JoystickButton retractRearLiftButton;
   private JoystickButton extendBothButton;
-  private Double lifterDriveAxis;
+  private JoystickButton liftDriveForwardButton;
+  private JoystickButton liftDriveReverseButton;
 
   // Create the constructor that runs when the OI class is instantiated
   // Instatiate the joysticks and buttons, then bind them to the commands
   public OI() {
-    driveStick = new Joystick(RobotMap.DRIVE_STICK_CH);
 
     elevatorStick = new Joystick(RobotMap.ELEVATOR_STICK_CH);
 
@@ -39,5 +39,11 @@ public class OI {
 
     retractRearLiftButton = new JoystickButton(elevatorStick, RobotMap.REAR_LIFT_RETRACT_BUTTON_CH);
     retractRearLiftButton.whenPressed(new RearLifterUpCom());
+
+    liftDriveForwardButton = new JoystickButton(elevatorStick, RobotMap.LIFT_DRIVE_FORWARD_CH);
+    liftDriveForwardButton.whileHeld(new LiftDriveForwardCom());
+
+    liftDriveReverseButton = new JoystickButton(elevatorStick, RobotMap.LIFT_DRIVE_REVERSE_CH);
+    liftDriveReverseButton.whileHeld(new LiftDriveReverseCom());
   }
 }

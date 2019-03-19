@@ -18,6 +18,7 @@ public class RobotMap {
   public static int FRONT_LIFT_ENCODER_CH_1 = 8;
   public static int FRONT_LIFT_ENCODER_CH_2 = 9;
   public static int FRONT_LIFT_POT_CH = 8;
+
   // Create the constants for the rear lifter
   public static int REAR_LIFT_MOTOR_CH = 9;
   public static int REAR_LIFT_ENCODER_CH_1 = 9;
@@ -31,5 +32,7 @@ public class RobotMap {
   public static int EXTEND_BOTH_BUTTON_CH = 4;
   public static int REAR_LIFT_RETRACT_BUTTON_CH = 2;
   public static int FRONT_LIFT_RETRACT_BUTTON_CH = 2;
+  public static int LIFT_DRIVE_FORWARD_CH = 2;
+  public static int LIFT_DRIVE_REVERSE_CH = 2;
 
 }

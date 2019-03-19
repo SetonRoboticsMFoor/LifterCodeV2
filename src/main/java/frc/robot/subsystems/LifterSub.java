@@ -222,7 +222,6 @@ public class LifterSub extends Subsystem {
     return rearLiftEncoder.getDistance();
   }
 
-
   public void setFrontLiftPosition(double frontVoltage) {
     frontLiftPid.setSetpoint(frontVoltage);
 
@@ -240,6 +239,19 @@ public class LifterSub extends Subsystem {
   public void stopLiftMotors() {
     frontLifterMotor.set(0);
     rearLifterMotor.set(0);
+    liftDriveMotor.set(0);
+  }
+
+  public void liftDriveForward() {
+    liftDriveMotor.set(1);
+  }
+
+  public void liftDriveReverse() {
+    liftDriveMotor.set(-1);
+  }
+
+  public void liftDriveStop() {
+    liftDriveMotor.set(0);
   }
 
   @Override
