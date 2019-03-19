@@ -9,7 +9,7 @@
 //
 //
 /**
-This command is used whenever the motor stops. It is set to be the default command for the subsystem
+This command is moves the motor backward to a setpoint
 */
 //
 //
@@ -20,42 +20,47 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-/**
- * An example command. You can replace me with your own command.
- */
-public class MotorStopCom extends Command {
-  public MotorStopCom() {
-    // Use requires() here to declare subsystem dependencies
+public class FrontLifterUpCom extends Command {
+  public FrontLifterUpCom() {
     requires(Robot.lifterSub);
   }
 
-  // Called just before this Command runs the first time
   @Override
   protected void initialize() {
   }
 
-  // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
 
-    Robot.lifterSub.stopLiftMotors();
+    // Updates the SmartDashboard/ Shuffleboard with current values
+    Robot.lifterSub.shuffleUpdate();
+    // Continuously gets the value of the encoder
+    Robot.lifterSub.getFrontLiftPotVoltage();
+    // --------------------------------------------------------------------------------------------------
+    // The value below changes the setpoint for the command, change the value after
+    // setPosition(change this value)
+    // For this program, use a voltage between .5-4.5 (leave room for overshoot, you
+    // don't want the
+    // potentiometer to break)
+    // --------------------------------------------------------------------------------------------------
+    Robot.lifterSub.setFrontLiftPosition(4);
 
   }
 
-  // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     return false;
   }
 
-  // Called once after isFinished returns true
   @Override
   protected void end() {
 
+    // Stops the motor when the command is finished, though technically it does not
+    // run as the PID code
+    // will keep running to keep the motor in place
+    Robot.lifterSub.stopLiftMotors();
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
   @Override
   protected void interrupted() {
   }

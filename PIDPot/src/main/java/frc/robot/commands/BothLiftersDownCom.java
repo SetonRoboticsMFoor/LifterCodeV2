@@ -20,9 +20,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class MotorForwardCom extends Command {
-  public MotorForwardCom() {
-    requires(Robot.motorSub);
+public class BothLiftersDownCom extends Command {
+  private double frontLiftPotVoltage;
+  private double rearLiftPotVoltage;
+
+  public BothLiftersDownCom() {
+    requires(Robot.lifterSub);
   }
 
   @Override
@@ -32,17 +35,34 @@ public class MotorForwardCom extends Command {
   @Override
   protected void execute() {
 
+    frontLiftPotVoltage = Robot.lifterSub.getFrontLiftPotVoltage();
+    rearLiftPotVoltage = Robot.lifterSub.getRearLiftPotVoltage();
+
     // Updates the SmartDashboard/ Shuffleboard with current values
-    Robot.motorSub.shuffleUpdate();
+    Robot.lifterSub.shuffleUpdate();
     // Continuously gets the value of the encoder
-    Robot.motorSub.getVoltage();
+    Robot.lifterSub.getRearLiftPotVoltage();
+    Robot.lifterSub.getFrontLiftPotVoltage();
+
+    if ((frontLiftPotVoltage - rearLiftPotVoltage) > 30) {
+      Robot.lifterSub.setFrontLiftPosition(1);
+    }
+
+    else if ((rearLiftPotVoltage - frontLiftPotVoltage) > 30) {
+      Robot.lifterSub.setRearLiftPosition(1);
+    }
+
+    else {
+      Robot.lifterSub.setFrontLiftPosition(1);
+      Robot.lifterSub.setRearLiftPosition(1);
+    }
     // --------------------------------------------------------------------------------------------------
     // The value below changes the setpoint for the command, change the value after
     // setPosition(change this value)
-    // For this program, use a voltage between .5-4.5 (leave room for overshoot, you don't want the
+    // For this program, use a voltage between .5-4.5 (leave room for overshoot, you
+    // don't want the
     // potentiometer to break)
     // --------------------------------------------------------------------------------------------------
-    Robot.motorSub.setPosition(4.0);
 
   }
 
@@ -58,7 +78,7 @@ public class MotorForwardCom extends Command {
     // run as the PID code
     // will keep running to keep the motor in place
 
-    Robot.motorSub.motorStop();
+    Robot.lifterSub.stopLiftMotors();
   }
 
   @Override

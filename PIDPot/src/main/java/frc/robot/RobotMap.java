@@ -9,16 +9,27 @@ package frc.robot;
 
 public class RobotMap {
 
-  // Create the constant for the motor channel
-  public static int MOTOR_CH = 8;
+  // Create the constant for the joystick channels
+  public static int DRIVE_STICK_CH = 0;
+  public static int ELEVATOR_STICK_CH = 1;
 
-  // Create the constant for the herder arm pot
-  public static int HERDER_ARM_POT_CH = 0;
+  // Create the constants for the front lifter
+  public static int FRONT_LIFT_MOTOR_CH = 8;
+  public static int FRONT_LIFT_ENCODER_CH_1 = 8;
+  public static int FRONT_LIFT_ENCODER_CH_2 = 9;
+  public static int FRONT_LIFT_POT_CH = 8;
+  // Create the constants for the rear lifter
+  public static int REAR_LIFT_MOTOR_CH = 9;
+  public static int REAR_LIFT_ENCODER_CH_1 = 9;
+  public static int REAR_LIFT_ENCODER_CH_2 = 10;
+  public static int REAR_LIFT_POT_CH = 9;
 
-  // Create the constant for the joystick channel
-  public static int STICK_CH = 0;
+  // Create the constants for the lift drive motor
+  public static int LIFT_DRIVE_MOTOR_CH = 8;
 
   // Create the constants for the buttons used on the joystick
-  public static int FORWARD_BUTTON_CH = 4;
-  public static int REVERSE_BUTTON_CH = 2;
+  public static int EXTEND_BOTH_BUTTON_CH = 4;
+  public static int REAR_LIFT_RETRACT_BUTTON_CH = 2;
+  public static int FRONT_LIFT_RETRACT_BUTTON_CH = 2;
+
 }
