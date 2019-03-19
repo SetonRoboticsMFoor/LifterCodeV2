@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.MotorForwardCom;
-import frc.robot.subsystems.MotorSub;
+import frc.robot.commands.MotorStopCom;
+import frc.robot.subsystems.LifterSub;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,8 +23,8 @@ import frc.robot.subsystems.MotorSub;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static MotorSub motorSub = new MotorSub();
-  public static OI m_oi;
+  public static LifterSub lifterSub = new LifterSub();
+  public static OI oi;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -35,8 +35,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new MotorForwardCom());
+    oi = new OI();
+    m_chooser.setDefaultOption("Default Auto", new MotorStopCom());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }
